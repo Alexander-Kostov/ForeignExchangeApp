@@ -2,6 +2,7 @@ package ForeignExchange.ForeignExchangeApp.serviceTests;
 
 import ForeignExchange.ForeignExchangeApp.model.ConversionCurrency;
 import ForeignExchange.ForeignExchangeApp.model.Currency;
+import ForeignExchange.ForeignExchangeApp.repository.CurrencyMySQLRepository;
 import ForeignExchange.ForeignExchangeApp.repository.CurrencyRepository;
 import ForeignExchange.ForeignExchangeApp.service.CurrencyService;
 import org.aspectj.lang.annotation.Before;
@@ -23,11 +24,19 @@ public class CurrencyServiceTest {
 
     @Mock
     private CurrencyRepository currencyRepository;
+
+    @Mock
+    private CurrencyMySQLRepository currencyMySQLRepository;
     private CurrencyService subject;
+
+    public CurrencyServiceTest(CurrencyMySQLRepository currencyMySQLRepository) {
+        this.currencyMySQLRepository = currencyMySQLRepository;
+        this.currencyMySQLRepository = currencyMySQLRepository;
+    }
 
     @BeforeEach
     public void setup() {
-        subject = new CurrencyService(currencyRepository);
+        subject = new CurrencyService(currencyRepository, currencyMySQLRepository);
     }
 
     @Test

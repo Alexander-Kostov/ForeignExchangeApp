@@ -1,4 +1,4 @@
-package ForeignExchange.ForeignExchangeApp.model;
+package ForeignExchange.ForeignExchangeApp.dto;
 
 import java.util.Map;
 
