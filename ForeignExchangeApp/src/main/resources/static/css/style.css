@@ -44,9 +44,15 @@ table .thead-dark th {
     vertical-align: middle;
 }
 
+/**********************************/
+/********** Pagination CSS ***********/
+/**********************************/
+.conversion-history-title {
+    margin: 24px;
+    font-size: 3.25em;
+}
 
-
-##currency-exchange-rates {
+#currency-exchange-rates {
      display: flex;
      flex-direction: column;
      align-items: center;
@@ -100,7 +106,7 @@ table .thead-dark th {
 .pagination {
         display: inline-block;
         padding-left: 0;
-        margin: 20px 0;
+        margin: 20px;
         border-radius: 4px;
 }
 
@@ -115,9 +121,9 @@ table .thead-dark th {
     padding: 6px 12px;
     margin-left: -1px;
     line-height: 1.42857143;
-    color: #333;
+    color: #fff;
+    background-color: #333;
     text-decoration: none;
-    background-color: #fff;
     border: 1px solid #ddd;
 }
 
@@ -168,7 +174,6 @@ table .thead-dark th {
     background-color: #fff;
     border-color: #ddd;
 }
-
 
 
 

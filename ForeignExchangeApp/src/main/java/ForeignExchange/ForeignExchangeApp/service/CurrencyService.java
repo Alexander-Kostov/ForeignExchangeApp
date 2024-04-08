@@ -13,12 +13,10 @@ import java.util.Optional;
 public class CurrencyService {
     private final CurrencyRepository currencyRepository;
 
-    private final ConversionHistoryRepository conversionHistoryRepository;
-
-    public CurrencyService(CurrencyRepository currencyRepository, ConversionHistoryRepository conversionHistoryRepository) {
+    public CurrencyService(CurrencyRepository currencyRepository) {
         this.currencyRepository = currencyRepository;
-        this.conversionHistoryRepository = conversionHistoryRepository;
     }
+
     public Optional<Currency> getCurrencyById(String upperCase) {
         return this.currencyRepository.findById(upperCase);
     }
