@@ -1,4 +1,4 @@
-package ForeignExchange.ForeignExchangeApp.model;
+package ForeignExchange.ForeignExchangeApp.model.mysql;
 
 import jakarta.persistence.*;
 

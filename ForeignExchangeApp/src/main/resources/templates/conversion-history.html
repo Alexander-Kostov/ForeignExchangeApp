@@ -19,8 +19,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-8 col-md-7 py-4">
-                    <h4 class="text-white">Currency Convertor</h4>
-                    <p class="text-muted">This is a project about currency conversion.</p>
+                    <h4 class="text-white">Conversion History</h4>
+                    <p class="text-muted">Here is the data of all conversions made in the web application</p>
                     <nav>
                         <ul>
                             <li><a th:href="@{/}">Home</a></li>
@@ -43,7 +43,7 @@
     </div>
 </header>
 
-<h1>All Transactions</h1>
+<h1 class="conversion-history-title">All Transactions</h1>
 
 <table class="table table-bordered">
     <thead class="thead-dark">
@@ -89,6 +89,9 @@
         <li class="page-item" th:if="${!history.isLast()}" th:classappend="${history.isLast() ? 'disabled' : ''}">
             <a class="page-link" th:if="${!history.isLast()}" th:href="@{/conversion-history/all(page=${history.totalPages - 1}, size=${history.size})}">Last</a>
             <span th:if="${history.isLast()}" class="page-link">Last</span>
+        </li>
+        <li class="page-item">
+            <span class="page-link">Page [[${history.number + 1}]]</span>
         </li>
     </ul>
 </nav>

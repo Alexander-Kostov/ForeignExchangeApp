@@ -1,7 +1,7 @@
 package ForeignExchange.ForeignExchangeApp.service;
 
-import ForeignExchange.ForeignExchangeApp.model.ConversionHistory;
-import ForeignExchange.ForeignExchangeApp.repository.CurrencyMySQLRepository;
+import ForeignExchange.ForeignExchangeApp.model.mysql.ConversionHistory;
+import ForeignExchange.ForeignExchangeApp.repository.mysql.ConversionHistoryRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -9,14 +9,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class ConversionHistoryService {
 
-    private CurrencyMySQLRepository currencyMySQLRepository;
+    private final ConversionHistoryRepository conversionHistoryRepository;
 
-    public ConversionHistoryService(CurrencyMySQLRepository currencyMySQLRepository) {
-        this.currencyMySQLRepository = currencyMySQLRepository;
+    public ConversionHistoryService(ConversionHistoryRepository conversionHistoryRepository) {
+        this.conversionHistoryRepository = conversionHistoryRepository;
     }
 
     public Page<ConversionHistory> getAllConversions(Pageable pageable) {
-        return currencyMySQLRepository.findAll(pageable);
+        return conversionHistoryRepository.findAll(pageable);
     }
 
 }

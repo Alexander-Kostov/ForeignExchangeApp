@@ -1,21 +1,18 @@
 package ForeignExchange.ForeignExchangeApp.IntegrationTests;
 
 import ForeignExchange.ForeignExchangeApp.model.ConversionCurrency;
-import ForeignExchange.ForeignExchangeApp.model.Currency;
-import ForeignExchange.ForeignExchangeApp.repository.CurrencyRepository;
+import ForeignExchange.ForeignExchangeApp.model.redis.Currency;
+import ForeignExchange.ForeignExchangeApp.repository.redis.CurrencyRepository;
 import ForeignExchange.ForeignExchangeApp.service.CurrencyService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
