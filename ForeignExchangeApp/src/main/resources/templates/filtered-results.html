@@ -37,32 +37,32 @@
     </div>
 </header>
 
-<h1 class="conversion-history-title">All Transactions</h1>
+<h1 class="conversion-history-title">Filtered Transactions</h1>
 
 <table class="table table-bordered">
     <thead class="thead-dark">
-        <tr>
-            <th>Transaction ID</th>
-            <th>From Currency</th>
-            <th>From Value</th>
-            <th>To Currency</th>
-            <th>To Value</th>
-            <th>Amount</th>
-            <th>Result</th>
-            <th>Date</th>
-        </tr>
+    <tr>
+        <th>Transaction ID</th>
+        <th>From Currency</th>
+        <th>From Value</th>
+        <th>To Currency</th>
+        <th>To Value</th>
+        <th>Amount</th>
+        <th>Result</th>
+        <th>Date</th>
+    </tr>
     </thead>
     <tbody th:each="transaction : ${history.getContent()}">
-        <tr>
-            <td th:text="${transaction.getId()}"></td>
-            <td th:text="${transaction.getFromName()}"></td>
-            <td th:text="${transaction.getFromValue()}"></td>
-            <td th:text="${transaction.getToName()}"></td>
-            <td th:text="${transaction.getToValue()}"></td>
-            <td th:text="${transaction.getAmount()}"></td>
-            <td th:text="${transaction.getResult()}"></td>
-            <td th:text="${transaction.getLocalDate()}"></td>
-        </tr>
+    <tr>
+        <td th:text="${transaction.getId()}"></td>
+        <td th:text="${transaction.getFromName()}"></td>
+        <td th:text="${transaction.getFromValue()}"></td>
+        <td th:text="${transaction.getToName()}"></td>
+        <td th:text="${transaction.getToValue()}"></td>
+        <td th:text="${transaction.getAmount()}"></td>
+        <td th:text="${transaction.getResult()}"></td>
+        <td th:text="${transaction.getLocalDate()}"></td>
+    </tr>
     </tbody>
 </table>
 

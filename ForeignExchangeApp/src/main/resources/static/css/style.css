@@ -176,6 +176,30 @@ table .thead-dark th {
 }
 
 
+/*  INPUT FORM */
+
+.filterForm {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+#ID {
+    display: none;
+}
+
+.filterOption {
+    margin: 14px auto;
+    width: 30%;
+}
+
+.input-label {
+    margin-left: 4px;
+    margin-bottom: 0.25rem;
+}
+
+
 
 
 
