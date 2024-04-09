@@ -20,20 +20,20 @@ public class CurrencyTask {
     private CurrencyRepository currencyRepository;
 
     // Runs every 2 hours
-    @Scheduled(fixedRate = 2 * 1000 * 60 * 60)
-    @CacheEvict(value = "currencies", allEntries = true)
-    protected void getRatesTask() {
-        System.out.println();
-        try {
-            RestTemplate restTemplate = new RestTemplate();
-            CurrencyDTO forObject = restTemplate.getForObject(fixerIoApiKey, CurrencyDTO.class);
-            forObject.getRates().forEach((key, value) -> {
-                Currency currency = new Currency(key, value);
-                this.currencyRepository.save(currency);
-            });
-
-        } catch (RestClientException ex) {
-            System.out.println((ex.getMessage()));
-        }
-    }
+//    @Scheduled(fixedRate = 2 * 1000 * 60 * 60)
+//    @CacheEvict(value = "currencies", allEntries = true)
+//    protected void getRatesTask() {
+//        System.out.println();
+//        try {
+//            RestTemplate restTemplate = new RestTemplate();
+//            CurrencyDTO forObject = restTemplate.getForObject(fixerIoApiKey, CurrencyDTO.class);
+//            forObject.getRates().forEach((key, value) -> {
+//                Currency currency = new Currency(key, value);
+//                this.currencyRepository.save(currency);
+//            });
+//
+//        } catch (RestClientException ex) {
+//            System.out.println((ex.getMessage()));
+//        }
+//    }
 }

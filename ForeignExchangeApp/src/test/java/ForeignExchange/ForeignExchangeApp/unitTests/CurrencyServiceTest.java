@@ -1,10 +1,7 @@
-package ForeignExchange.ForeignExchangeApp.serviceTests;
+package ForeignExchange.ForeignExchangeApp.unitTests;
 
-import ForeignExchange.ForeignExchangeApp.model.ConversionCurrency;
 import ForeignExchange.ForeignExchangeApp.model.redis.Currency;
-import ForeignExchange.ForeignExchangeApp.repository.mysql.ConversionHistoryRepository;
 import ForeignExchange.ForeignExchangeApp.repository.redis.CurrencyRepository;
-import ForeignExchange.ForeignExchangeApp.service.CurrencyConverterService;
 import ForeignExchange.ForeignExchangeApp.service.CurrencyService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +13,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 @ExtendWith(MockitoExtension.class)
 public class CurrencyServiceTest {

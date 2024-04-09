@@ -1,9 +1,8 @@
-package ForeignExchange.ForeignExchangeApp.serviceTests;
+package ForeignExchange.ForeignExchangeApp.unitTests;
 
 import ForeignExchange.ForeignExchangeApp.model.ConversionCurrency;
 import ForeignExchange.ForeignExchangeApp.model.redis.Currency;
 import ForeignExchange.ForeignExchangeApp.repository.mysql.ConversionHistoryRepository;
-import ForeignExchange.ForeignExchangeApp.repository.redis.CurrencyRepository;
 import ForeignExchange.ForeignExchangeApp.service.CurrencyConverterService;
 import ForeignExchange.ForeignExchangeApp.service.CurrencyService;
 import org.junit.jupiter.api.Assertions;
