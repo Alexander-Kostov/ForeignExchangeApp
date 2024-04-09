@@ -88,8 +88,14 @@ $("#convertButton").click(function() {
             console.log(data);
             $("#convertResult").text(data);
         },
-        error: function(data) {
-            alert('There was a problem converting!');
+        error: function(xhr) {
+            if (xhr.status === 429) {
+               window.location.href = "/too-many-requests-page";
+            } else if (xhr.status === 400) {
+               window.location.href = "/bad-request-page";
+            } else {
+               alert('There was a problem converting!');
+           }
         }
     });
 

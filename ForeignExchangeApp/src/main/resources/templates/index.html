@@ -18,13 +18,7 @@
                 <div class="col-sm-8 col-md-7 py-4">
                     <h4 class="text-white">Currency Convertor</h4>
                     <p class="text-muted">Here you can convert an amount of currency to currency</p>
-                    <nav>
-                        <ul>
-                            <li><a th:href="@{/}">Home</a></li>
-                            <li><a th:href="@{/exchange-rates}">Exchange Rates</a></li>
-                            <li><a th:href="@{/conversion-history/all}">Conversion History</a></li>
-                        </ul>
-                    </nav>
+                    <span th:replace="fragments/header-nav.html"></span>
                 </div>
             </div>
         </div>
