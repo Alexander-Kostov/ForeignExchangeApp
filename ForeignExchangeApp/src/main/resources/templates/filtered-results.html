@@ -52,7 +52,7 @@
         <th>Date</th>
     </tr>
     </thead>
-    <tbody th:each="transaction : ${history.getContent()}">
+    <tbody th:if="${filtered != null}" th:each="transaction : ${filtered.getContent()}">
     <tr>
         <td th:text="${transaction.getId()}"></td>
         <td th:text="${transaction.getFromName()}"></td>
@@ -68,27 +68,52 @@
 
 <nav aria-label="Page navigation">
     <ul class="pagination">
-        <li class="page-item" th:if="${!history.isFirst()}" th:classappend="${history.isFirst() ? 'disabled' : ''}">
-            <a class="page-link" th:if="${!history.isFirst()}" th:href="@{/conversion-history/all(page=0, size=${history.size})}">First</a>
-            <span th:if="${history.first}" class="page-link">First</span>
+        <li class="page-item" th:if="${!filtered.first}" th:classappend="${filtered.first ? 'disabled' : ''}">
+            <a class="page-link" th:if="${!filtered.first}" th:href="@{/conversion-history/filtered-data(page=0, size=${filtered.size}, fromId=${fromId}, toId=${toId}, fromDate=${fromDate}, toDate=${toDate})}">First</a>
+            <span th:if="${filtered.first}" class="page-link">First</span>
         </li>
-        <li class="page-item" th:if="${!history.isFirst()}" th:classappend="${!history.hasPrevious() ? 'disabled' : ''}">
-            <a class="page-link" th:if="${history.hasPrevious()}" th:href="@{/conversion-history/all(page=${history.number - 1}, size=${history.size})}">Previous</a>
-            <span th:if="${!history.hasPrevious()}" class="page-link">Previous</span>
+        <li class="page-item" th:if="${!filtered.first}" th:classappend="${!filtered.hasPrevious() ? 'disabled' : ''}">
+            <a class="page-link" th:if="${filtered.hasPrevious()}" th:href="@{/conversion-history/filtered-data(page=${filtered.number - 1}, size=${filtered.size}, fromId=${fromId}, toId=${toId}, fromDate=${fromDate}, toDate=${toDate})}">Previous</a>
+            <span th:if="${!filtered.hasPrevious()}" class="page-link">Previous</span>
         </li>
-        <li class="page-item" th:if="${!history.isLast()}" th:classappend="${!history.hasNext() ? 'disabled' : ''}">
-            <a class="page-link" th:if="${history.hasNext()}" th:href="@{/conversion-history/all(page=${history.number + 1}, size=${history.size})}">Next</a>
-            <span th:if="${!history.hasNext()}" class="page-link">Next</span>
+        <li class="page-item" th:if="${!filtered.last}" th:classappend="${!filtered.hasNext() ? 'disabled' : ''}">
+            <a class="page-link" th:if="${filtered.hasNext()}" th:href="@{/conversion-history/filtered-data(page=${filtered.number + 1}, size=${filtered.size}, fromId=${fromId}, toId=${toId}, fromDate=${fromDate}, toDate=${toDate})}">Next</a>
+            <span th:if="${!filtered.hasNext()}" class="page-link">Next</span>
         </li>
-        <li class="page-item" th:if="${!history.isLast()}" th:classappend="${history.isLast() ? 'disabled' : ''}">
-            <a class="page-link" th:if="${!history.isLast()}" th:href="@{/conversion-history/all(page=${history.totalPages - 1}, size=${history.size})}">Last</a>
-            <span th:if="${history.isLast()}" class="page-link">Last</span>
+        <li class="page-item" th:if="${!filtered.last}" th:classappend="${filtered.last ? 'disabled' : ''}">
+            <a class="page-link" th:if="${!filtered.last}" th:href="@{/conversion-history/filtered-data(page=${filtered.totalPages - 1}, size=${filtered.size}, fromId=${fromId}, toId=${toId}, fromDate=${fromDate}, toDate=${toDate})}">Last</a>
+            <span th:if="${filtered.last}" class="page-link">Last</span>
         </li>
         <li class="page-item">
-            <span class="page-link">Page [[${history.number + 1}]]</span>
+            <span class="page-link">Page [[${filtered.number + 1}]]</span>
         </li>
     </ul>
 </nav>
+
+<!--<nav aria-label="Page navigation">-->
+<!--    <ul class="pagination">-->
+<!--        <li class="page-item" th:if="${!filtered.first}" th:classappend="${filtered.first ? 'disabled' : ''}">-->
+<!--            <a class="page-link" th:if="${!filtered.first}" th:href="@{/conversion-history/filtered-data(page=0, size=${filtered.size})}">First</a>-->
+<!--            <span th:if="${filtered.first}" class="page-link">First</span>-->
+<!--        </li>-->
+<!--        <li class="page-item" th:if="${!filtered.first}" th:classappend="${!filtered.hasPrevious() ? 'disabled' : ''}">-->
+<!--            <a class="page-link" th:if="${filtered.hasPrevious()}" th:href="@{/conversion-history/filtered-data(page=${filtered.number - 1}, size=${filtered.size})}">Previous</a>-->
+<!--            <span th:if="${!filtered.hasPrevious()}" class="page-link">Previous</span>-->
+<!--        </li>-->
+<!--        <li class="page-item" th:if="${!filtered.last}" th:classappend="${!filtered.hasNext() ? 'disabled' : ''}">-->
+<!--            <a class="page-link" th:if="${filtered.hasNext()}" th:href="@{/conversion-history/filtered-data(page=${filtered.number + 1}, size=${filtered.size})}">Next</a>-->
+<!--            <span th:if="${!filtered.hasNext()}" class="page-link">Next</span>-->
+<!--        </li>-->
+<!--        <li class="page-item" th:if="${!filtered.last}" th:classappend="${filtered.last ? 'disabled' : ''}">-->
+<!--            <a class="page-link" th:if="${!filtered.last}" th:href="@{/conversion-history/filtered-data(page=${filtered.totalPages - 1}, size=${filtered.size})}">Last</a>-->
+<!--            <span th:if="${filtered.last}" class="page-link">Last</span>-->
+<!--        </li>-->
+<!--        <li class="page-item">-->
+<!--            <span class="page-link">Page [[${filtered.number + 1}]]</span>-->
+<!--        </li>-->
+<!--    </ul>-->
+<!--</nav>-->
+
 
 </body>
 <script src="/js/currency-history.js"></script>

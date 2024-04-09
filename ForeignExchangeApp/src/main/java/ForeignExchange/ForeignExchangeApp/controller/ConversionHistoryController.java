@@ -3,6 +3,7 @@ package ForeignExchange.ForeignExchangeApp.controller;
 import ForeignExchange.ForeignExchangeApp.model.mysql.ConversionHistory;
 import ForeignExchange.ForeignExchangeApp.service.ConversionHistoryService;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -48,35 +49,59 @@ public class ConversionHistoryController {
     @PostMapping("/filter")
     public String showFilteredConversions(@RequestParam(name = "fromDate", required = false) String fromDate,
                                           @RequestParam(name = "toDate", required = false) String toDate,
-                                          @RequestParam(name = "fromId", required = false) Integer fromId,
-                                          @RequestParam(name = "toId", required = false) Integer toId,
-                                          RedirectAttributes redirectAttributes, Pageable pageable) {
-        Page<ConversionHistory> allConversionsFiltered = null;
+                                          @RequestParam(name = "fromId", required = false) String fromId,
+                                          @RequestParam(name = "toId", required = false) String toId,
+                                          RedirectAttributes redirectAttributes
+    ) {
 
         if (!fromDate.isEmpty() && !toDate.isEmpty()) {
-            allConversionsFiltered = conversionHistoryService.getAllConversionsFilteredByDate(LocalDate.parse(fromDate), LocalDate.parse(toDate), pageable);
+            redirectAttributes.addFlashAttribute("fromDate", fromDate);
+            redirectAttributes.addFlashAttribute("toDate", toDate);
         }
-        System.out.println();
         if (fromId != null && toId != null) {
-            if (fromId != 0 && toId != 0) {
-                allConversionsFiltered = conversionHistoryService.getAllConversionsFilteredById(fromId, toId, pageable);
+            if (!fromId.isEmpty() && !toId.isEmpty()) {
+                int idFrom = Integer.parseInt(fromId);
+                int idTo = Integer.parseInt(toId);
+                if (idFrom != 0 && idTo != 0) {
+                    redirectAttributes.addFlashAttribute("fromId", fromId);
+                    redirectAttributes.addFlashAttribute("toId", toId);
+                }
             }
         }
+        System.out.println();
 
-
-        redirectAttributes.addFlashAttribute("history", allConversionsFiltered);
         return "redirect:filtered-data";
     }
 
-
     @GetMapping("/filtered-data")
-    public String getFilteredResults(Model model, @PageableDefault(
-            sort = "id",
-            direction = Sort.Direction.ASC,
-            size = 10
-    ) Pageable pageable, @ModelAttribute("history") Page<ConversionHistory> filteredConversions) {
+    public String getFilteredResults(Model model,
+                                     @PageableDefault(sort = "id", direction = Sort.Direction.ASC, size = 10)
+                                     Pageable pageable,
+                                     @ModelAttribute("fromId") String fromId,
+                                     @ModelAttribute("toId") String toId,
+                                     @ModelAttribute("fromDate") String fromDate,
+                                     @ModelAttribute("toDate") String toDate) {
 
-        model.addAttribute("history", filteredConversions);
+        Page<ConversionHistory> allConversionsFiltered = null;
+
+        if (fromId != null && toId != null) {
+            if (!fromId.isEmpty() && !toId.isEmpty()) {
+                Integer idFrom = Integer.parseInt(fromId);
+                Integer idTo = Integer.parseInt(toId);
+                allConversionsFiltered = conversionHistoryService.getAllConversionsFilteredById(idFrom, idTo, pageable);
+            }
+        }
+
+        if (fromDate != null && toDate != null && !fromDate.isEmpty() && !toDate.isEmpty()) {
+            LocalDate from = LocalDate.parse(fromDate);
+            LocalDate to = LocalDate.parse(toDate);
+            allConversionsFiltered = conversionHistoryService.getAllConversionsFilteredByDate(from, to, pageable);
+        }
+
+        model.addAttribute("filtered", allConversionsFiltered);
+
+        System.out.println();
+
         return "filtered-results";
     }
 

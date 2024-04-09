@@ -19,7 +19,7 @@ public class CurrencyConverterController {
     public CurrencyConverterController(CurrencyConverterService currencyConverterService) {
         this.currencyConverterService = currencyConverterService;
 
-        Bandwidth limit = Bandwidth.classic(1, Refill.intervally(5, Duration.ofMinutes(1)));
+        Bandwidth limit = Bandwidth.classic(50, Refill.intervally(5, Duration.ofMinutes(1)));
         this.bucket = Bucket4j.builder()
                 .addLimit(limit)
                 .build();
