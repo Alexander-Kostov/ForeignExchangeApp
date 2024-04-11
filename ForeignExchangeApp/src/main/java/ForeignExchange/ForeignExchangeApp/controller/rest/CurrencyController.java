@@ -10,7 +10,6 @@ import java.util.List;
 
 @RestController
 public class CurrencyController {
-
     private CurrencyService currencyService;
 
     public CurrencyController(CurrencyService currencyService) {

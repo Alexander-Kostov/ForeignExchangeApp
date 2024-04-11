@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-
 @Component
 public class CurrencyTask {
     @Value("${fixer.io.apiKey}")

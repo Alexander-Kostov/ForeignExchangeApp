@@ -1,7 +1,6 @@
 package ForeignExchange.ForeignExchangeApp.model.mysql;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 
 @Entity
